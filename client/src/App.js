@@ -16,10 +16,12 @@ class App extends Component {
         <Provider store={store}>
       <div className="App">
           <AppNavbar/>
-         <Container>
-          <ItemModal/>
+
+<div className="main-container">
           <ProjectList/>
-         </Container>
+             <ItemModal/>
+
+</div>
       </div>
         </Provider>
     );

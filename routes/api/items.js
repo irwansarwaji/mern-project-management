@@ -19,7 +19,8 @@ router.get('/', (req, res) =>{
 //@access Public
 router.post('/', (req, res) =>{
    const newItem = new Item({
-       name: req.body.name
+       name: req.body.name,
+       description: req.body.description
    });
 
    newItem.save().then(item => res.json(item)); //save it do the database

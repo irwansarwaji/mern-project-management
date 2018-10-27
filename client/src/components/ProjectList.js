@@ -21,26 +21,68 @@ class ProjectList extends Component{
 
         const{ items } = this.props.item; //pulling out items from reducer
         return(
-            <Container>
-                <ListGroup>
-                    <TransitionGroup className="project-list">
-                        {items.map(({ _id, name}) =>(
-                            <CSSTransition key={_id} timeout={500} classNames="fade">
-                                <ListGroupItem>
-                                    <Button
-                                        className="remove-btn"
-                                        color="danger"
-                                        size="sm"
-                                        onClick={this.onDeleteClick.bind(this, _id)}>
-                                        &times;
-                                    </Button>
-                                    {name}
-                                </ListGroupItem>
-                            </CSSTransition>
-                        ))}
-                    </TransitionGroup>
-                </ListGroup>
-            </Container>
+            <div>
+                <div className="row">
+                    <div className="col-sm">
+
+                        <div className="col-titles">Flowcharts</div>
+                        <ListGroup className="list-group">
+                            <TransitionGroup className="list-group-item">
+                                {items.map(({ _id, name, description}) =>(
+                                    <CSSTransition key={_id} timeout={500} classNames="fade">
+                                        <ListGroupItem>
+                                            <div class="card">
+                                                <div class="card-header">
+                                                    {name}
+                                                    <button
+                                                        className="remove-btn"
+                                                        // color="danger"
+                                                        size="sm"
+                                                        onClick={this.onDeleteClick.bind(this, _id)}>
+                                                        &times;
+                                                    </button>
+                                                </div>
+                                                <div class="card-body">
+                                                    <p class="card-text">{description}</p>
+                                                </div>
+                                            </div>
+
+                                        </ListGroupItem>
+                                    </CSSTransition>
+                                ))}
+                            </TransitionGroup>
+                        </ListGroup>
+
+
+                    </div>
+
+                    <div className="col-sm col-border">
+                        <div className="col-titles">Wireframes</div>
+                    </div>
+                    <div className="col-sm col-border">
+                        <div className="col-titles">Prototype</div>
+                    </div>
+
+                    <div className="col-sm col-border">
+                        <div className="col-titles">Development</div>
+                    </div>
+                    <div className="col-sm col-border">
+                        <div className="col-titles">Test</div>
+                    </div>
+
+                    <div className="col-sm col-border">
+                        <div className="col-titles">Launch</div>
+                    </div>
+
+
+                </div>
+
+
+
+
+
+
+            </div>
         );
     }
 }

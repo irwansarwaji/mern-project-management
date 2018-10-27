@@ -21,7 +21,8 @@ import {addItem} from '../actions/itemActions';
 class ItemModal extends Component{
     state = {
         modal: false,
-        name: ''
+        name: '',
+        description:''
     }
 
     toggle = () =>{
@@ -32,12 +33,14 @@ class ItemModal extends Component{
 
     onChange =(e) =>{
         this.setState({[e.target.name]: e.target.value});
+        this.setState({[e.target.description]: e.target.value});
     }
 
     onSubmit = e => {
         e.preventDefault();
         const newItem ={
-            name: this.state.name
+            name: this.state.name,
+            description: this.state.description
         }
 
         // Add item via addItem action
@@ -50,33 +53,46 @@ class ItemModal extends Component{
     render(){
         return(
           <div>
-              <Button color="dark"
+
+              <Button className="add-btn-main"
                       style={{marginBottom: '2rem'}}
-                      onClick={this.toggle}
-              >Add Item</Button>
+                      onClick={this.toggle}>Add Project &#43;
+              </Button>
+
+
               <Modal
               isOpen={this.state.modal}
               toggle={this.toggle}>
                   <ModalHeader toggle={this.toggle}>
-                      Add To Project List
+                      New project
                   </ModalHeader>
 
                   <ModalBody>
                       <Form onSubmit={this.onSubmit}>
                           <FormGroup>
-                              <Label for="item"> Item</Label>
                               <Input
+                                  className="title-input"
                                   type="text"
-                              name="name"
-                              id="item"
-                              placeholder="Add project"
-                              onChange={this.onChange}>
+                                  name="name"
+                                  id="item"
+                                  placeholder="Title"
+                                  onChange={this.onChange}>
                               </Input>
+
+                              <Input
+                                  className="description-input"
+                                  type="textarea"
+                                  name="description"
+                                  id="item"
+                                  placeholder="Description"
+                                  onChange={this.onChange}>
+                              </Input>
+
                               <Button
-                              color="dark"
+                              className="add-btn"
                               style={{marginTop: '2rem'}}
                               block>
-                                  Add Item
+                                  Add Project &#43;
                               </Button>
                           </FormGroup>
                       </Form>
